@@ -48,8 +48,8 @@ jobs:
             - name: Deploy to server
               uses: appleboy/ssh-action@v1.2.0
               with:
-                host: 103.23.199.216
-                username: indrazm
+                host: 203.145.34.74
+                username: afaizn
                 key: ${{ secrets.SSH_PRIVATE_KEY }}
                 script: |
                     cd live/
