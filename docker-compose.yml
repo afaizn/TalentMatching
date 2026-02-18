@@ -4,9 +4,9 @@ services:
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: postgres
+      POSTGRES_DB: talentmatchingdb
     ports:
-      - "5446:5432"
+      - "5445:5432"
     volumes:
       - feedbase_data:/var/lib/postgresql/data
 
@@ -20,7 +20,7 @@ services:
       - .env
     environment:
       - NODE_ENV=production
-      - DATABASE_URL=postgresql://postgres:postgres@db:5432/postgres
+      - DATABASE_URL=postgresql://postgres:postgres@db:5432/talentmatchingdb
     depends_on:
       - db
 
