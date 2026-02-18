@@ -15,7 +15,7 @@ export const Route = createRootRoute({
 				content: "width=device-width, initial-scale=1",
 			},
 			{
-				title: "TanStack Start Starter",
+				title: "Talent Match Intelligence",
 			},
 		],
 		links: [
@@ -27,6 +27,13 @@ export const Route = createRootRoute({
 	}),
 
 	shellComponent: RootDocument,
+
+	notFoundComponent: () => (
+		<div style={{ padding: 24, fontFamily: "sans-serif" }}>
+			<h1>404 </h1>
+			<p>Page Not Found</p>
+		</div>
+	),
 });
 
 function RootDocument({ children }: { children: React.ReactNode }) {
@@ -35,19 +42,22 @@ function RootDocument({ children }: { children: React.ReactNode }) {
 			<head>
 				<HeadContent />
 			</head>
+
 			<body>
 				{children}
+
 				<TanStackDevtools
 					config={{
 						position: "bottom-right",
 					}}
 					plugins={[
 						{
-							name: "Tanstack Router",
+							name: "TanStack Router",
 							render: <TanStackRouterDevtoolsPanel />,
 						},
 					]}
 				/>
+
 				<Scripts />
 			</body>
 		</html>
