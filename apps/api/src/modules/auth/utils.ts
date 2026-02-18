@@ -15,7 +15,7 @@ export function generateAcessToken(userId: number) {
 	if (!secret) {
 		throw new Error("JWT_SECRET is not defined");
 	}
-	return jwt.sign({ sub: userId, type: "access" }, process.env.JWT_SECRET!, {
+	return jwt.sign({ sub: userId, type: "access" }, secret, {
 		expiresIn: "5m",
 	});
 }
@@ -25,7 +25,7 @@ export function generateRefreshToken(userId: number) {
 	if (!secret) {
 		throw new Error("JWT_SECRET is not defined");
 	}
-	return jwt.sign({ sub: userId, type: "refresh" }, process.env.JWT_SECRET!, {
+	return jwt.sign({ sub: userId, type: "refresh" }, secret, {
 		expiresIn: "7d",
 	});
 }

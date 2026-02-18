@@ -13,7 +13,11 @@ export const authMiddleware = createMiddleware(async (c, next) => {
 	}
 
 	try {
-		const payload = jwt.verify(token, process.env.JWT_SECRET!) as unknown as {
+		const secret = process.env.JWT_SECRET;
+		if (!secret) {
+			throw new Error("JWT_SECRET is not defined");
+		}
+		const payload = jwt.verify(token, secret) as unknown as {
 			sub: number;
 			type?: string;
 		};
