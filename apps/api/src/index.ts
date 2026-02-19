@@ -1,12 +1,13 @@
 import { serve } from "@hono/node-server";
 import { Hono } from "hono";
+import { cors } from "hono/cors";
 import { companiesRoute } from "./router/companies";
 
-const app = new Hono();
+const app = new Hono().use(cors()).route("/companies", companiesRoute);
 
 console.log("ENV", process.env.TEST);
 
-app.route("/companies", companiesRoute);
+export type AppType = typeof app;
 
 serve(
 	{
