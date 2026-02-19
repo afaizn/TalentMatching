@@ -1,13 +1,12 @@
 import { serve } from "@hono/node-server";
 import { Hono } from "hono";
+import { companiesRoute } from "./router/companies";
 
 const app = new Hono();
 
 console.log("ENV", process.env.TEST);
 
-app.get("/", (c) => {
-	return c.text("Hello API!");
-});
+app.route("/companies", companiesRoute);
 
 serve(
 	{
