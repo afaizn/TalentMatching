@@ -25,15 +25,15 @@ async function main() {
 	for (const record of records) {
 		await prisma.candidate.create({
 			data: {
-				name: record["Name"],
-				email: record["Email"],
-				phone: record["Phone"],
-				address: record["Address"],
+				name: record.Name,
+				email: record.Email,
+				phone: record.Phone,
+				address: record.Address,
 				profile_summmary: record["Profile Summary (LinkedIn Style)"],
 				last_education: record["Last Education"],
 				last_role: record["Last Role"],
 				last_salary: Number(record["Last Salary"].replace(/,/g, "")),
-				salary_expectation: Number(record["Expectation"].replace(/,/g, "")),
+				salary_expectation: Number(record.Expectation.replace(/,/g, "")),
 				CompanyId: record["Company id"] ? Number(record["Company id"]) : null,
 			},
 		});
