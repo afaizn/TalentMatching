@@ -1,13 +1,13 @@
 import { serve } from "@hono/node-server";
 import { Hono } from "hono";
+import { candidatesRoute } from "./routes/candidates.js";
+import { Prisma } from "./utils/prisma.js";
 
 const app = new Hono();
 
 console.log("ENV", process.env.TEST);
 
-app.get("/", (c) => {
-	return c.text("Hello API!");
-});
+app.route("candidates", candidatesRoute);
 
 serve(
 	{
