@@ -20,12 +20,20 @@ function Login() {
 		setError("");
 
 		try {
-			const data = await api.login({ email, password });
+			const res = await api.auth.login.$post({
+				json: { email, password },
+			});
+			if (!res.ok) {
+				const errorData = await res.json();
+				throw new Error(errorData.message);
+			}
+			const data = await res.json();
 			localStorage.setItem("accessToken", data.accessToken);
 			localStorage.setItem("refreshToken", data.refreshToken);
 			navigate({ to: "/dashboard" });
-		} catch (err: any) {
-			setError(err.message || "Login failed");
+		} catch (err) {
+			const message = err instanceof Error ? err.message : "Login failed";
+			setError(message);
 		} finally {
 			setLoading(false);
 		}

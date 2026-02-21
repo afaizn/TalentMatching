@@ -6,8 +6,6 @@ import { prisma } from "../utils/prisma";
 export const authMiddleware = createMiddleware(async (c, next) => {
 	const token = c.req.header("token");
 
-	// console.log("TOKEN", token)
-
 	if (!token) {
 		throw new HTTPException(401, { message: "Unauthorized" });
 	}

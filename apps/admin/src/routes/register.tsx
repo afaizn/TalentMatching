@@ -20,10 +20,20 @@ function Register() {
 		setError("");
 
 		try {
-			await api.register({ email, password });
+			const res = await api.auth.register.$post({
+				json: { email, password },
+			});
+
+			if (!res.ok) {
+				const errorData = await res.json();
+				throw new Error(errorData.message);
+			}
+
 			navigate({ to: "/login" });
-		} catch (err: any) {
-			setError(err.message || "Registration failed");
+		} catch (err) {
+			const message =
+				err instanceof Error ? err.message : "Registration failed";
+			setError(message);
 		} finally {
 			setLoading(false);
 		}

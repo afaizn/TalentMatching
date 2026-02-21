@@ -55,8 +55,6 @@ export const authRouter = new Hono()
 			throw new HTTPException(401, { message: "Wrong password" });
 		}
 
-		// const token = jwt.sign({sub: existingUser.id}, process.env.JWT_SECRET!,{ expiresIn: '1h' });
-
 		const accessToken = generateAcessToken(existingUser.id);
 		const refreshToken = generateRefreshToken(existingUser.id);
 
